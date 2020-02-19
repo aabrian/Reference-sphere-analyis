@@ -5,12 +5,16 @@ figure(1);
 figure(1);
 scatter3(SPH(:,1),SPH(:,2),SPH(:,3),1)
 hold on
-scatter3(center(1),center(2),center(3))
-scatter3(a,b,c,1);
-hold off
+%scatter3(center(1),center(2),center(3))
+%scatter3(a,b,c,1);
+
 std1 = std(res)
 idx = abs(res) < 3*std1;
 res2 = res(idx);
+a2 = SPH(idx,1);
+b2 = SPH(idx,2);
+c2 = SPH(idx,3);
+scatter3(a2,b2,c2,1)
 
 % res2 = res;
 % for ii = 1:length(idx)
