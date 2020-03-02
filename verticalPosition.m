@@ -1,7 +1,7 @@
 close all; clear all; clc;
 folderMain = 'C:/git/dumbbell-accuracy-at-different-heights\';
 folders = dir(fullfile(folderMain,'200224*'));
-FLAG = 0;
+FLAG = 1;
 
 for jj = 1:length(folders)
     folder1 = fullfile(folderMain,folders(jj).name)
