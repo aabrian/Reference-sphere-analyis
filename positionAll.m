@@ -1,9 +1,11 @@
 close all; clear all; clc;
 folderMain = 'C:/git/dumbbell-accuracy-at-different-heights\';
 folders = dir(fullfile(folderMain,'20*'));
+trueLength = 251.22;
 FLAG = 0;
 
-for jj = 1:length(folders)
+for  jj = 1:length(folders)
+
     folder1 = fullfile(folderMain,folders(jj).name)
     files = dir(fullfile(folder1,'*.asc'));
     
@@ -69,17 +71,25 @@ for jj = 1:length(folders)
         zheight(i) = mean(centerA2 + centerB2);
         distAll{jj,i} = dist(i);
         
+        diff1 = centerA2-centerB2;
+        slope1 = diff1(2)/diff1(1);
+        slope2 = diff1(3)/diff1(2);
+        ang1(i) = atand(slope1);
+        ang2 = atand(slope2)
         
         %     hold on
         
         
         
     end
+    ang1
+    meanAngle(jj) = mean(ang1); clear ang1;
     figure(3); hold on;
     %scatter(dist,zheight)
-    plot(zheight,dist)
+    plot(zheight,dist-trueLength)
     clear dist; clear zheight;
 % break;
 end
-
+xlabel('height of dumbbell(mm)')
+ylabel('Error distance between spheres centers (mm)')
 legend(folders(:).name)
