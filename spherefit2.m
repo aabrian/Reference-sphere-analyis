@@ -1,10 +1,11 @@
-function [result] = spherefit(x,y,z)
+function [result] = spherefit2(x,y,z)
 % Getting A matrix
 e = -2.*x;
 d = -2.*y;
 f = -2.*z;
 zz = ones(length(x),1);
 A = [e d f zz];
+B = zeros(length(x),1);
 for i = 1:length(x);
     B(i,1) = -(x(i).^2+y(i).^2+z(i).^2);
 end
@@ -19,6 +20,7 @@ a = q3;
 b = r3;
 c = s3;
 R = R;
+distance = zeros(length(x));
 for i = 1 : length(x);
     distance(i) = sqrt((x(i)-center(1)).^2+(y(i)-center(2)).^2+(z(i)-center(3)).^2);
 end
